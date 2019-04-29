@@ -4,6 +4,7 @@ from datetime import datetime
 import firebase
 from firebase_admin import auth, firestore
 from serial_grab import getSensors
+from ai import predict
 
 secret_key='kyabaath'
 
@@ -52,12 +53,12 @@ def bar():
         mq135values.append(dict_item['mq135'])
         mq7values.append(dict_item['mq7'])
         mq2values.append(dict_item['mq2']) 
-        # pm2_5values.append(dict_item['pm25']) 
+        pm2_5values.append(dict_item['pm25']) 
     mq135labels.reverse()
     mq135values.reverse()
     mq7values.reverse()
     mq2values.reverse()
-    # pm2_5values.reverse()  
+    pm2_5values.reverse()  
     if request.method=="POST":
         return redirect(url_for('/bar'))
     return render_template('bar.html',dashactive="active",mqlabels = mq135labels ,mq135values = mq135values,mq7values = mq7values,mq2values=mq2values,pm2_5values=pm2_5values)
@@ -78,12 +79,12 @@ def pie():
         mq135values.append(dict_item['mq135'])
         mq7values.append(dict_item['mq7'])
         mq2values.append(dict_item['mq2']) 
-        # pm2_5values.append(dict_item['pm25']) 
+        pm2_5values.append(dict_item['pm25']) 
     mq135labels.reverse()
     mq135values.reverse()
     mq7values.reverse()
     mq2values.reverse()
-    # pm2_5values.reverse()   
+    pm2_5values.reverse()   
     if request.method=="POST":
         return redirect(url_for('/pie'))
     return render_template('pie.html',dashactive="active",mqlabels = mq135labels ,mq135values = mq135values,mq7values = mq7values,mq2values=mq2values,pm2_5values=pm2_5values)
@@ -126,10 +127,21 @@ def subscribe():
 
 
 
-@app.route('/notifications')
-def noti():
-	return render_template('notifications.html',notifactive="active")
+# @app.route('/notifcation')
+# def noti():
+# 	return render_template('notifications.html',notifactive="active")
 
+
+@app.route('/Prediction',methods=['POST','GET'])
+def pre():
+    
+    mq135values=predict()
+    mq135lables=[]
+    for i in range(len(mq135values)):
+        mq135lables.append(i)
+    if request.method=="POST":
+        return redirect(url_for('/Prediction'))
+    return render_template('Ai_graph.html',pactive="active" ,mq135values = mq135values,mq135lables=mq135lables)
 
 
 

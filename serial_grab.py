@@ -22,7 +22,7 @@ def getSensors():
             try:
                 mq135=decoded_bytes[0]
                 mq135=int(mq135)
-                if mq135>200:
+                if mq135>300:
                     sendMail("Air Quality",mq135)
                 
                 ref.set({
