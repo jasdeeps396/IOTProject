@@ -1,0 +1,62 @@
+<html>
+<head>
+   <link rel="stylesheet" href="/static/css/log1.css">
+   <link rel="stylesheet" href="/static/js/log2.js">
+   
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!------ Include the above in your HEAD tag ---------->
+   
+   <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-5 mx-auto">
+            <div id="first">
+               <div class="myform form ">
+                  <div class="logo mb-3">
+                     <div class="col-md-5 text-center">
+                        <h4>Admin Login</h4>
+                     </div>
+                     
+                  </div>
+                  <form method="post" name="login">
+                     {% if error %}
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                           <span class="sr-only">Close</span>
+                        </button>
+                        <strong>{{error}}</strong>
+                     </div>
+                     
+                     {% endif %}
+                     
+                     <div class="form-group mt-1">
+                        <label for="exampleInputName">User Name</label>
+                        <input type="text" name="username"  class="form-control" id="username"  placeholder="username">
+                     </div>
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="password" name="password"  class="form-control" id="password" placeholder="password">
+                     </div>
+                     
+                     <div class="col-md-12 text-center ">
+                        <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Admin Login</button>
+                     </div>
+                     
+                  </form>
+                  
+               </div>
+            </div>
+            </div>
+      </div>
+   </div>   
+   
+</body>
+</html>

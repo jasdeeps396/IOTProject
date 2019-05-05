@@ -97,18 +97,22 @@
 									</div>
 									
 								</div>
-                            </div>
-                            <!-- <div class="col-md-6">
-                                <div class="card card-chart">
-                                    <div class="card-header" style="background: azure">
-                                        <div class="ct-chart" id="completedTasksChart"></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h4 class="card-title">Dust Level</h4>
-                                    </div>
-                                    
-                                </div>
-                            </div> -->
+							</div>
+							<div class="col-md-6">
+								<div class="card card-chart">
+									<div class="card-header" style="background-color:azure">
+										<canvas id="chart_pm2.5" height="350" width="400">
+								</canvas>
+	
+										
+									</div>
+									<div class="card-body">
+										<h4 class="card-title">Dust Level</h4>
+										
+									</div>
+								</div>
+							</div>
+                            
 						
 				
 				    </div>
@@ -331,7 +335,57 @@ var myChart = new Chart(mq2, {
         }
     }
 });
+
+var mq2 = document.getElementById('chart_pm2.5');
+var myChart = new Chart(mq2, {
+    type: 'bar',
+    data: {
+        labels: [
+			{% for item in mqlabels %}
+			 "{{item}}",
+			 {% endfor %}
+
+		],
+        datasets: [{
+            label: 'Level of Dust in Air',
+            data: [
+				{% for item in pm2_5values %}
+				"{{item}}",
+				{% endfor %}
+			],
+            backgroundColor: [
+                'rgba(71,45,15,0.6)',
+                'rgba(255, 99, 132, 0.9)',
+                'rgba(54, 162, 235, 0.9)',
+                'rgba(255, 206, 86, 0.9)',
+                'rgba(75, 192, 192, 0.9)',
+                'rgba(153, 102, 255, 0.9)',
+                'rgba(255, 159, 64, 0.9)',
+                'rgba(255, 206, 86, 0.9)',
+                'rgba(75, 192, 192, 0.9)',
+                'rgba(153, 102, 255, 0.9)',
+                'rgba(255, 159, 64, 0.9)',
+              
+            ],
+            borderColor: [
+                'rgba(0, 0, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                       }
+            }]
+        }
+    }
 });
+});
+
+
 			
              </script>
 			 </body>
